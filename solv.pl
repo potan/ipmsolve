@@ -16,7 +16,7 @@ nsplit(N, X, Y) :- N > 1,
                    ).
 
 solve(Theories, P, C, [P|C], _, A, A) :- axiom(Theories, P).
-solve(_, P, C, C, _, A, A) :- member(P, C).
+% solve(_, P, C, C, _, A, A) :- member(P, C).
 solve(Theories, P, C, T, N, Aps, [X | Apso]) :- N > 0,
                      ap(X, Y, P),
 %                      nsplit(N, A, B),
