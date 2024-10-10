@@ -1,9 +1,16 @@
-
 ap(A -> B, A, B).
 
 axiom(hilbert_pos, A -> (_ -> A), "A->B->A").
-axiom(hilbert_pos, (A -> (B -> C)) -> ((A -> B) -> (A -> C)), "(A->B->C)->(A->B)->A->C").
+axiom(hilbert_pos, (A -> (B -> C)) -> ((A -> 😎 -> (A -> C)), "(A->B->C)->(A->B)->A->C").
 axiom(hilbert, (~(A) -> ~(B)) -> (B -> A), "(~A->~B)->(B->A)").
+
+axiom(hilbert_hlp, (B -> C) -> ((A -> 😎 -> (A -> C)), "(B->C)->((A->B)->(A->C))").
+axiom(hilbert_hlp, (A -> (B -> C)) -> (B -> (A -> C)), "(A->(B->C))->(B->(A->C))").
+axiom(hilbert_hlp, (~(A)) -> (A -> _), "~A->(A->B)").
+axiom(hilbert_hlp, ((~(A)) -> A) -> A, "(~A->A)->A)").
+axiom(hilbert_hlp, (~(~(A))) -> A, "~~A->A").
+axiom(hilbert_hlp, A -> (~(~(A))), "A->~~A").
+
 axiom(Theories, A) :- axiom(Theory, A, _), member(Theory, Theories).
 
 nsplit(1, 0, 0).
@@ -53,3 +60,5 @@ run(Theories, P, N, L) :- run(Theories, P, N, _, A),
 
 % run([hilbert_pos], (a -> (b -> c)) -> (b -> (a -> c)), 6, L).
 % run([hilbert_pos, hilbert], (~(a) -> a) -> a, 5, L).
+% run([hilbert_pos, hilbert, hilbert_hlp], (a -> b) -> ((~(a) -> b) -> b), 4, L).
+% run([hilbert_pos, hilbert, hilbert_hlp], (b -> a) -> (~(a) -> ~(b)), 4, L).
